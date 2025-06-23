@@ -11,6 +11,7 @@ apt-get install -y \
     ca-certificates \
     vim \
     nano \
+    less \
     htop \
     tree \
     neofetch
@@ -20,6 +21,7 @@ curl -s https://get.nextflow.io | bash
 chmod +x nextflow
 mkdir -p $HOME/.local/bin/
 mv nextflow $HOME/.local/bin/
+
 # Add Nextflow to PATH
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 
@@ -47,7 +49,9 @@ export PS1='$(conda_prompt)\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\
 EOF
 
 # Alias mamba to micromamba for convenience
-echo "alias mamba='micromamba'" >> ~/.bashrc
+#echo "alias mamba='micromamba'" >> ~/.bashrc
+# Setup micromamba
+echo 'eval "$(mamba shell hook --shell bash)"' >> ~/.bashrc
 
 echo "Minimal dev container setup complete!"
 echo "You can now use 'micromamba' to install packages" 

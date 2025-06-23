@@ -7,7 +7,7 @@
     // Install MicroMamba
     "features": {
         "ghcr.io/devcontainers/features/python:1": {},
-        "ghcr.io/mamba-org/devcontainer-features/micromamba:1": {
+        "ghcr.io/rocker-org/devcontainer-features/miniforge:2": {
             "channels": ["conda-forge", "bioconda"]
         },
         "ghcr.io/devcontainers/features/java:1": {},
@@ -29,10 +29,9 @@
                 "ms-python.python", 
                 "ms-python.vscode-pylance", 
                 "nf-core.nf-core-extensionpack",
-                "pkief.material-icon-theme",
-                "zhuangtongfa.material-theme"
-            ],
-            "colorTheme": "One Dark Pro"
+                "quarto.quarto-vscode",
+                "pkief.material-icon-theme"
+            ]
         }
     },
 

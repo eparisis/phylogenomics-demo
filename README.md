@@ -31,6 +31,12 @@ We will use GTDB-Tk for our:
 
 ### Installation
 
+Extract the compressed GTDB-Tk test database:
+
+```bash
+tar -xzf gtdbtk_mock_db.tar.gz
+```
+
 ```bash
 mamba create -n phylo -c bioconda python=3.9 gtdbtk
 ```
@@ -40,11 +46,13 @@ Activate the environment and set the database path as instructed by the installa
 ```bash
 mamba activate phylo
 conda env config vars set GTDBTK_DATA_PATH="../gtdbtk_mock_db"
+mamba deactivate && mamba activate phylo
 ```
 
-Check the installation:
+Move into a newly created `work` directory and check the installation:
 
 ```bash
+mkdir -p work && cd work
 gtdbtk check_install
 ```
 
@@ -54,12 +62,6 @@ We will get an OK for the software dependencies and a warning about the database
 
 We will follow the [GTDB-Tk tutorial](https://ecogenomics.github.io/GTDBTk/examples/classify_wf.html) to get started.
 
-Create a work direcroty where we will store our data:
-
-```bash
-mkdir -p work
-cd work
-```
 #### Gene calling (identify)
 
 First we need to identify the core bacterial genes in our genomes.
@@ -130,6 +132,6 @@ iqtree -s gtdbtk.bac120.user_msa.fasta -m TESTONLY
 #### Running IQ-TREE for phylogenetic reconstruction
 
 ```bash
-iqtree -s gtdbtk.bac120.user_msa.fasta -T 6
+iqtree -s gtdbtk.bac120.user_msa.fasta -T 4
 ```
 
