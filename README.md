@@ -8,7 +8,7 @@ This is a simple bacterial phylogenomic reconstruction pipeline.
 
 You can run this tutorial with Github Codespaces by clicking the button below:
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](repo-link)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/eparisis/phylogenomics-demo)
 
 ## Requirements for local installation
 
