@@ -96,6 +96,17 @@ alv -w 100 -k gtdbtk_out/align/align/gtdbtk.bac120.msa.fasta | less -R
 
 ## Phylogenetic reconstruction with [`IQ-TREE`](https://iqtree.github.io/)
 
+There are 3 main phylogenetic reconstruction methods:
+1. **Distance-based methods**: These methods calculate a distance matrix from the sequence data and then build a tree based on the distances. Examples include Neighbor-Joining (NJ) and Unweighted Pair Group Method with Arithmetic Mean (UPGMA).
+  - Fast, good for large datasets.
+  - May oversimplify evolutionary models; less accurate than model-based methods.
+2. **Maximum Likelihood (ML) methods**: These methods estimate the likelihood of the data given a tree and a model of evolution. They search for the tree that maximizes this likelihood. Examples include RAxML, IQ-TREE, and PhyML.
+  - High accuracy, can use complex evolutionary models.
+  - Computationally intensive, especially for large datasets.
+3. **Bayesian methods**: These methods use a probabilistic framework to estimate the posterior distribution of trees given the data and a model of evolution. They sample from this distribution to obtain trees. Examples include MrBayes and BEAST.
+  - Gives support values (posterior probabilities), handles model uncertainty well (very high accuracy).
+  - Very computationally demanding and slow.
+
 We will use `IQ-TREE` to reconstruct the phylogeny of our genomes. `IQ-TREE` is a fast, accurate and memory-efficient phylogenetic tree inference program. It supports a wide range of phylogenetic substitution models and can handle large datasets. It has very good documentation and has a large set of other helper tools incorporated which makes it a very versatile tool.
 
 Two of these tools which we are going to use are:
@@ -129,9 +140,22 @@ As mentioned we can use `ModelFinder` to automatically select the best model for
 iqtree -s gtdbtk.bac120.user_msa.fasta -m TESTONLY
 ```
 
+`ModelFinder` will output a list of models and their support values. The model with the highest support value is the best model for our data. In our case it is `LG+F+I+R5`.
+
 #### Running IQ-TREE for phylogenetic reconstruction
+
+Infer maximum-likelihood tree from a sequence alignment with the best-fit model automatically selected by ModelFinder:
 
 ```bash
 iqtree -s gtdbtk.bac120.user_msa.fasta -T 4
 ```
 
+Infer maximum-likelihood tree from a sequence alignment with the `LG+F+I+R5` model:
+
+```bash
+iqtree -s gtdbtk.bac120.user_msa.fasta -m LG+F+I+R5 -T 4
+```
+
+The `gtdbtk.bac120.user_msa.fasta.treefile` file is the output tree file in Newick format. You can visualize it with a tool like `FigTree`, `iTOL`, or `Ete3`.
+
+You can use `iTOL` to visualize the tree online here: [iTOL](https://itol.embl.de/).

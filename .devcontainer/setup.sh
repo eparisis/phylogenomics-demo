@@ -29,7 +29,7 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 cat >> ~/.bashrc << 'EOF'
 
 # Basic CLI prompt
-export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+export PS1=' \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] '
 
 # Useful aliases
 alias ll='ls -la'
@@ -39,13 +39,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-# Show current conda environment in prompt
-conda_prompt() {
-    if [ -n "$CONDA_DEFAULT_ENV" ]; then
-        echo "($CONDA_DEFAULT_ENV) "
-    fi
-}
-export PS1='$(conda_prompt)\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 EOF
 
 # Alias mamba to micromamba for convenience

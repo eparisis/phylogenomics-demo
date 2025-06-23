@@ -21,7 +21,9 @@
         "vscode": {
             // Set *default* container specific settings.json values on container create.
             "settings": {
-                "python.defaultInterpreterPath": "/opt/conda/bin/python"
+                "python.defaultInterpreterPath": "/opt/conda/bin/python",
+                "workbench.colorTheme": "GitHub Dark",
+                "workbench.iconTheme": "a-file-icon-vscode"
             },
 
             // Add the IDs of extensions you want installed when the container is created.
@@ -30,7 +32,7 @@
                 "ms-python.vscode-pylance", 
                 "nf-core.nf-core-extensionpack",
                 "quarto.quarto-vscode",
-                "pkief.material-icon-theme"
+                "atommaterial.a-file-icon-vscode"
             ]
         }
     },
