@@ -1,3 +1,6 @@
+[![Tutorial](https://img.shields.io/badge/Tutorial-Phylogenomics-red.svg)](https://github.com/eparisis/phylogenomics-demo)
+[![GTDB-Tk](https://img.shields.io/badge/GTDB--Tk-2.4.1-orange.svg)](https://github.com/Ecogenomics/GTDBTk)
+[![IQ-TREE](https://img.shields.io/badge/IQ--TREE-2.4.0-green.svg)](https://iqtree.github.io/)
 [![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)
 
 # Simple Bacterial Phylogenomic reconstruction
@@ -51,7 +54,7 @@ tar -xzf gtdbtk_mock_db.tar.gz
 ```
 
 ```bash
-mamba create -n phylo -c bioconda python=3.9 gtdbtk
+mamba create -n phylo -c bioconda python=3.9 gtdbtk=2.4.1
 ```
 
 Activate the environment and set the database path as instructed by the installation prompt:
@@ -138,7 +141,7 @@ Two of these tools which we are going to use are:
 On the `phylo` environment we are already in use:
 
 ```bash
-mamba install -c bioconda iqtree
+mamba install -c bioconda iqtree=2.4.0
 ```
 
 Move the alignment file to the work directory and unzip it:
@@ -146,6 +149,21 @@ Move the alignment file to the work directory and unzip it:
 ```bash
 mv gtdbtk_out/align/align/gtdbtk.bac120.user_msa.fasta.gz . && gunzip gtdbtk.bac120.user_msa.fasta.gz
 ```
+
+>[!NOTE]
+> <small>You can save your conda environment with the following command:
+>
+> ```bash
+> conda env export > env.yml
+> ```
+>
+> To recreate the environment from the `env.yml` file you can use the following command:
+>
+> ```bash
+> mamba env create -f env.yml
+> ```
+>
+> </small>
 
 ### Running `IQ-TREE`
 
@@ -190,21 +208,21 @@ An example of this implementation can be found [here](https://academic.oup.com/i
 ## References
 
 > *[GTDB-Tk](https://ecogenomics.github.io/GTDBTk/)*
-> Chaumeil PA, et al. 2022. GTDB-Tk v2: memory friendly classification with the Genome Taxonomy Database. Bioinformatics, btac672.
-> Chaumeil PA, et al. 2019. GTDB-Tk: A toolkit to classify genomes with the Genome Taxonomy Database. Bioinformatics, btz848.
+> <small>*Chaumeil PA, et al. 2022. GTDB-Tk v2: memory friendly classification with the Genome Taxonomy Database. Bioinformatics, btac672.*</small>
+> <small>*Chaumeil PA, et al. 2019. GTDB-Tk: A toolkit to classify genomes with the Genome Taxonomy Database. Bioinformatics, btz848.*</small>
 
 > *[IQ-TREE](https://iqtree.github.io/)*
-> *Thomas K.F. Wong, Nhan Ly-Trong, Huaiyan Ren, Hector Banos, Andrew J. Roger, Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman, Matthew W. Hahn, Gavin Huttley, Robert Lanfear, Bui Quang Minh (2025) IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models. Submitted. <https://ecoevorxiv.org/repository/view/8916/>*
+> <small>*Thomas K.F. Wong, Nhan Ly-Trong, Huaiyan Ren, Hector Banos, Andrew J. Roger, Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman, Matthew W. Hahn, Gavin Huttley, Robert Lanfear, Bui Quang Minh (2025) IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models. Submitted. <https://ecoevorxiv.org/repository/view/8916/>*</small>
 
 > *[ModelFinder]()*
-> *Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler, and Lars S Jermiin (2017) ModelFinder: Fast model selection for accurate phylogenetic estimates. Nat. Methods, 14:587–589. <https://doi.org/10.1038/nmeth.4285>*
+> <small>*Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler, and Lars S Jermiin (2017) ModelFinder: Fast model selection for accurate phylogenetic estimates. Nat. Methods, 14:587–589. <https://doi.org/10.1038/nmeth.4285>*</small>
 
 > *[Ultrafast bootstrap (UFBoot)]()*
-> *Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh, and Le Sy Vinh (2018) UFBoot2: Improving the ultrafast bootstrap approximation. Mol. Biol. Evol., 35:518–522. <https://doi.org/10.1093/molbev/msx281>*
+> <small>*Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh, and Le Sy Vinh (2018) UFBoot2: Improving the ultrafast bootstrap approximation. Mol. Biol. Evol., 35:518–522. <https://doi.org/10.1093/molbev/msx281>*</small>
 
 > *[iTOL](https://itol.embl.de/)*
-> *RamLetunic and Bork (2024) Interactive Tree of Life (iTOL) v6: recent updates to the phylogenetic tree display and annotation tool. Nucleic Acids Res doi: 10.1093/nar/gkae268.*
+> <small>*RamLetunic and Bork (2024) Interactive Tree of Life (iTOL) v6: recent updates to the phylogenetic tree display and annotation tool. Nucleic Acids Res doi: 10.1093/nar/gkae268.*</small>
 
 > *[BUSCO](https://busco.ezlab.org/)*
-> *Mosè Manni, Matthew R Berkeley, Mathieu Seppey, Felipe A Simão, Evgeny M Zdobnov, BUSCO Update: Novel and Streamlined Workflows along with Broader and Deeper Phylogenetic Coverage for Scoring of Eukaryotic, Prokaryotic, and Viral Genomes, Molecular Biology and Evolution, Volume 38, Issue 10, October 2021, Pages 4647–4654, <https://doi.org/10.1093/molbev/msab199>*
-> *Mosè Manni, Matthew R. Berkeley, Mathieu Seppey, Evgeny M. Zdobnov, BUSCO: Assessing Genomic Data Quality and Beyond. Current Protocols,  <https://doi.org/10.1002/cpz1.323>
+> <small>*Mosè Manni, Matthew R Berkeley, Mathieu Seppey, Felipe A Simão, Evgeny M Zdobnov, BUSCO Update: Novel and Streamlined Workflows along with Broader and Deeper Phylogenetic Coverage for Scoring of Eukaryotic, Prokaryotic, and Viral Genomes, Molecular Biology and Evolution, Volume 38, Issue 10, October 2021, Pages 4647–4654, <https://doi.org/10.1093/molbev/msab199>*</small>
+> <small>*Mosè Manni, Matthew R. Berkeley, Mathieu Seppey, Evgeny M. Zdobnov, BUSCO: Assessing Genomic Data Quality and Beyond. Current Protocols,  <https://doi.org/10.1002/cpz1.323>*</small>
