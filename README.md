@@ -17,7 +17,7 @@ You can run this tutorial with Github Codespaces by clicking the button below:
 
 ## Requirements for local installation
 
-- [WSL for windows](https://learn.microsoft.com/en-us/windows/wsl/install) users.
+- [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) for windows users.
 - [MicroMamba](https://mamba.readthedocs.io/en/latest/) (conda replacement, if you already have conda installed it is recommended to replace it with `Miniforge`).
   - Download and install the latest version of MicroMamba for your operating system from the [MicroMamba github repo](https://github.com/conda-forge/miniforge?tab=readme-ov-file#requirements-and-installers).
   - For windows install the version compatible with your [WSL](https://github.com/conda-forge/miniforge?tab=readme-ov-file#windows-subsystem-for-linux-wsl).
