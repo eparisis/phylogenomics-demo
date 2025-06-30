@@ -1,3 +1,5 @@
+[![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)
+
 # Simple Bacterial Phylogenomic reconstruction
 
 ## Overview
@@ -13,13 +15,24 @@ You can run this tutorial with Github Codespaces by clicking the button below:
 ## Requirements for local installation
 
 - [WSL for windows](https://learn.microsoft.com/en-us/windows/wsl/install) users.
-- [homebrew](https://brew.sh/) for macos users.
-- [MicroMamba](https://mamba.readthedocs.io/en/latest/) (conda replacement, if already have conda installed you can skip this).
-  - Download and install the latest version of MicroMamba for your operating system from the [MicroMamba github repo](https://github.com/mamba-org/micromamba-releases/releases).
+- [MicroMamba](https://mamba.readthedocs.io/en/latest/) (conda replacement, if you already have conda installed it is recommended to replace it with `Miniforge`).
+  - Download and install the latest version of MicroMamba for your operating system from the [MicroMamba github repo](https://github.com/conda-forge/miniforge?tab=readme-ov-file#requirements-and-installers).
   - For windows install the version compatible with your [WSL](https://github.com/conda-forge/miniforge?tab=readme-ov-file#windows-subsystem-for-linux-wsl).
   - For macos do not install the arm64 version (even if you are using an arm64 mac - M chips).
 - [VSCode](https://code.visualstudio.com/).
   - [Setup VSCode to run on WSL](https://code.visualstudio.com/docs/remote/wsl) for windows users.
+
+## General steps for phylogenomic reconstruction
+
+1. Gene calling.
+2. Identification of homologous genes.
+3. Translation of the homologous genes into amino acids.
+4. Concatenation of the translated amino acids into a single sequence.
+5. Alignment of the concatenated sequences.
+6. Phylogenetic method and model selection.
+7. Tree inference.
+8. Tree visualization.
+9. Refinement of the tree.
 
 ## Gene identification and alignment with [`GTDB-Tk`](https://github.com/Ecogenomics/GTDBTk)
 
@@ -97,24 +110,30 @@ alv -w 100 -k gtdbtk_out/align/align/gtdbtk.bac120.msa.fasta | less -R
 ## Phylogenetic reconstruction with [`IQ-TREE`](https://iqtree.github.io/)
 
 There are 3 main phylogenetic reconstruction methods:
-1. **Distance-based methods**: These methods calculate a distance matrix from the sequence data and then build a tree based on the distances. Examples include Neighbor-Joining (NJ) and Unweighted Pair Group Method with Arithmetic Mean (UPGMA).
-  - Fast, good for large datasets.
-  - May oversimplify evolutionary models; less accurate than model-based methods.
-2. **Maximum Likelihood (ML) methods**: These methods estimate the likelihood of the data given a tree and a model of evolution. They search for the tree that maximizes this likelihood. Examples include RAxML, IQ-TREE, and PhyML.
-  - High accuracy, can use complex evolutionary models.
-  - Computationally intensive, especially for large datasets.
-3. **Bayesian methods**: These methods use a probabilistic framework to estimate the posterior distribution of trees given the data and a model of evolution. They sample from this distribution to obtain trees. Examples include MrBayes and BEAST.
-  - Gives support values (posterior probabilities), handles model uncertainty well (very high accuracy).
-  - Very computationally demanding and slow.
 
-We will use `IQ-TREE` to reconstruct the phylogeny of our genomes. `IQ-TREE` is a fast, accurate and memory-efficient phylogenetic tree inference program. It supports a wide range of phylogenetic substitution models and can handle large datasets. It has very good documentation and has a large set of other helper tools incorporated which makes it a very versatile tool.
+1. **Distance-based methods**: These methods calculate a distance matrix from the sequence data and then build a tree based on the distances. Examples include Neighbor-Joining (NJ) and Unweighted Pair Group Method with Arithmetic Mean (UPGMA).
+
+   - Fast, good for large datasets.
+   - May oversimplify evolutionary models; less accurate than model-based methods.
+
+2. **Maximum Likelihood (ML) methods**: These methods estimate the likelihood of the data given a tree and a model of evolution. They search for the tree that maximizes this likelihood. Examples include RAxML, IQ-TREE, and PhyML.
+
+   - High accuracy, can use complex evolutionary models.
+   - Computationally intensive, especially for large datasets.
+
+3. **Bayesian methods**: These methods use a probabilistic framework to estimate the posterior distribution of trees given the data and a model of evolution. They sample from this distribution to obtain trees. Examples include MrBayes and BEAST.
+
+   - Gives support values (posterior probabilities), handles model uncertainty well (very high accuracy).
+   - Very computationally demanding and slow.
+
+We will use `IQ-TREE` to reconstruct the phylogeny of our genomes. `IQ-TREE` is a fast, accurate and memory-efficient phylogenetic Maximum Likelihood (ML) tree inference program. It supports a wide range of phylogenetic substitution models and can handle large datasets. It has very good documentation and has a large set of other helper tools incorporated which makes it a very versatile tool.
 
 Two of these tools which we are going to use are:
 
 1. Ultrafast bootstrap (`UFBoot`) for faster bootstrapping.
 2. Ultrafast model selection (`ModelFinder`) for automated model selection.
 
-### Installation
+### `IQ-TREE` Installation
 
 On the `phylo` environment we are already in use:
 
@@ -159,3 +178,33 @@ iqtree -s gtdbtk.bac120.user_msa.fasta -m LG+F+I+R5 -T 4
 The `gtdbtk.bac120.user_msa.fasta.treefile` file is the output tree file in Newick format. You can visualize it with a tool like `FigTree`, `iTOL`, or `Ete3`.
 
 You can use `iTOL` to visualize the tree online here: [iTOL](https://itol.embl.de/).
+
+## Other approaches (Homework)
+
+Create a phylogenetic tree with [BUSCOs](https://busco.ezlab.org/).
+An example of this implementation can be found [here](https://academic.oup.com/ismej/article/15/1/211/7474492?login=false).
+
+>[BUSCO Protocols Paper](https://doi.org/10.1002/cpz1.323)
+>*Mosè Manni, Matthew R. Berkeley, Mathieu Seppey, Evgeny M. Zdobnov, BUSCO: Assessing Genomic Data Quality and Beyond. Current Protocols,  <https://doi.org/10.1002/cpz1.323>*
+
+## References
+
+> *[GTDB-Tk](https://ecogenomics.github.io/GTDBTk/)*
+> Chaumeil PA, et al. 2022. GTDB-Tk v2: memory friendly classification with the Genome Taxonomy Database. Bioinformatics, btac672.
+> Chaumeil PA, et al. 2019. GTDB-Tk: A toolkit to classify genomes with the Genome Taxonomy Database. Bioinformatics, btz848.
+
+> *[IQ-TREE](https://iqtree.github.io/)*
+> *Thomas K.F. Wong, Nhan Ly-Trong, Huaiyan Ren, Hector Banos, Andrew J. Roger, Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman, Matthew W. Hahn, Gavin Huttley, Robert Lanfear, Bui Quang Minh (2025) IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models. Submitted. <https://ecoevorxiv.org/repository/view/8916/>*
+
+> *[ModelFinder]()*
+> *Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler, and Lars S Jermiin (2017) ModelFinder: Fast model selection for accurate phylogenetic estimates. Nat. Methods, 14:587–589. <https://doi.org/10.1038/nmeth.4285>*
+
+> *[Ultrafast bootstrap (UFBoot)]()*
+> *Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh, and Le Sy Vinh (2018) UFBoot2: Improving the ultrafast bootstrap approximation. Mol. Biol. Evol., 35:518–522. <https://doi.org/10.1093/molbev/msx281>*
+
+> *[iTOL](https://itol.embl.de/)*
+> *RamLetunic and Bork (2024) Interactive Tree of Life (iTOL) v6: recent updates to the phylogenetic tree display and annotation tool. Nucleic Acids Res doi: 10.1093/nar/gkae268.*
+
+> *[BUSCO](https://busco.ezlab.org/)*
+> *Mosè Manni, Matthew R Berkeley, Mathieu Seppey, Felipe A Simão, Evgeny M Zdobnov, BUSCO Update: Novel and Streamlined Workflows along with Broader and Deeper Phylogenetic Coverage for Scoring of Eukaryotic, Prokaryotic, and Viral Genomes, Molecular Biology and Evolution, Volume 38, Issue 10, October 2021, Pages 4647–4654, <https://doi.org/10.1093/molbev/msab199>*
+> *Mosè Manni, Matthew R. Berkeley, Mathieu Seppey, Evgeny M. Zdobnov, BUSCO: Assessing Genomic Data Quality and Beyond. Current Protocols,  <https://doi.org/10.1002/cpz1.323>
