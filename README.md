@@ -225,4 +225,5 @@ An example of this implementation can be found [here](https://academic.oup.com/i
 
 > *[BUSCO](https://busco.ezlab.org/)*
 > <small>*Mosè Manni, Matthew R Berkeley, Mathieu Seppey, Felipe A Simão, Evgeny M Zdobnov, BUSCO Update: Novel and Streamlined Workflows along with Broader and Deeper Phylogenetic Coverage for Scoring of Eukaryotic, Prokaryotic, and Viral Genomes, Molecular Biology and Evolution, Volume 38, Issue 10, October 2021, Pages 4647–4654, <https://doi.org/10.1093/molbev/msab199>*</small>
+
 > <small>*Mosè Manni, Matthew R. Berkeley, Mathieu Seppey, Evgeny M. Zdobnov, BUSCO: Assessing Genomic Data Quality and Beyond. Current Protocols,  <https://doi.org/10.1002/cpz1.323>*</small>
