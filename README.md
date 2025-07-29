@@ -181,16 +181,16 @@ iqtree -s gtdbtk.bac120.user_msa.fasta -m TESTONLY
 
 #### Running IQ-TREE for phylogenetic reconstruction
 
-Infer maximum-likelihood tree from a sequence alignment with the best-fit model automatically selected by ModelFinder:
+Infer maximum-likelihood tree from a sequence alignment with the best-fit model automatically selected by ModelFinder & 500 bootstrap replicates:
 
 ```bash
-iqtree -s gtdbtk.bac120.user_msa.fasta -T 4
+iqtree -s gtdbtk.bac120.user_msa.fasta -b 500 -T 4
 ```
 
 Infer maximum-likelihood tree from a sequence alignment with the `LG+F+I+R5` model:
 
 ```bash
-iqtree -s gtdbtk.bac120.user_msa.fasta -m LG+F+I+R5 -T 4
+iqtree -s gtdbtk.bac120.user_msa.fasta -m LG+F+I+R5 -b 500 -T 4
 ```
 
 The `gtdbtk.bac120.user_msa.fasta.treefile` file is the output tree file in Newick format. You can visualize it with a tool like `FigTree`, `iTOL`, or `Ete3`.
